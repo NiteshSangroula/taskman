@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 import com.nitesh.taskman.command.Command;
 import com.nitesh.taskman.manager.TaskManager;
+import com.nitesh.taskman.parser.CommandFactory;
+import com.nitesh.taskman.parser.CommandParser;
+import com.nitesh.taskman.parser.ParsedInput;
 
 public class REPL {
     public void run() {
@@ -18,7 +21,8 @@ public class REPL {
                 } else if (input.equals("help")) {
                     printHelp();
                 } else {
-                    Command cmd = CommandParser.parse(input);
+                    ParsedInput parsedInput = CommandParser.parse(input);
+                    Command cmd = CommandFactory.getCommand(parsedInput);
                     cmd.execute(taskmanager);
                 }
                 
