@@ -5,7 +5,7 @@ import java.util.Map;
 import com.nitesh.taskman.command.*;
 import com.nitesh.taskman.model.Priority;
 
-public class CommandFactory {
+public class CommandFactory implements ICommandFactory{
 
     private Map<String, String> args;
 

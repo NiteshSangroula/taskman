@@ -1,6 +1,8 @@
 package com.nitesh.taskman.model;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable{
     private static int idCounter = 1;
     private final int id;
     private String name;

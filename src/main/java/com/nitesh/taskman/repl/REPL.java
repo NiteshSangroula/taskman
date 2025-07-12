@@ -4,13 +4,15 @@ import java.util.Scanner;
 
 import com.nitesh.taskman.command.Command;
 import com.nitesh.taskman.manager.TaskManager;
-import com.nitesh.taskman.parser.CommandFactory;
-import com.nitesh.taskman.parser.CommandParser;
-import com.nitesh.taskman.parser.ParsedInput;
+import com.nitesh.taskman.parser.*;
+import com.nitesh.taskman.storage.Storagemanager;
+import com.nitesh.taskman.util.AppPaths;
 
 public class REPL {
     public void run() {
-        TaskManager taskmanager = new TaskManager();
+        String filePath = AppPaths.getDataFilePath("tasks.ser");
+        TaskManager taskmanager = new TaskManager(new Storagemanager(filePath));
+
         try (Scanner sc = new Scanner(System.in)) {
             while(true) {
                 System.out.print("> ");
