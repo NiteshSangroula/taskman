@@ -28,7 +28,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("[%d] %s (Due: %s, Priority: %s, Status: %s)", 
+        return String.format("[%d] \"%s\" (Due: %s, Priority: %s, Status: %s)", 
             id,
             name,
             dueDate,

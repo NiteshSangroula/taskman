@@ -22,7 +22,14 @@ public class REPL {
                     printHelp();
                 } else {
                     ParsedInput parsedInput = CommandParser.parse(input);
-                    Command cmd = CommandFactory.getCommand(parsedInput);
+                    CommandFactory factory = new CommandFactory(parsedInput.getArgs());
+                    Command cmd = switch(parsedInput.getCommand()){
+                        case "add" -> factory.createAddCommand();
+                        case "delete" -> factory.createDeleteCommand();
+                        case "done" -> factory.createMarkCommand();
+                        case "list" -> factory.createListCommand();
+                        default -> factory.createNoCommand();
+                    };
                     cmd.execute(taskmanager);
                 }
                 
