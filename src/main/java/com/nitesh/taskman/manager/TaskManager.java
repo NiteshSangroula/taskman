@@ -8,16 +8,25 @@ import com.nitesh.taskman.model.Task;
 import com.nitesh.taskman.storage.Storagemanager;
 
 public class TaskManager {
+    private int idCounter;
     private final List<Task> tasks;
     private final Storagemanager storagemanager;
 
     public TaskManager(Storagemanager storagemanager) {
         this.storagemanager = storagemanager;
         this.tasks = storagemanager.loadTasks();
+        this.idCounter = getMaxExistingId() + 1;
+    }
+
+    private int getMaxExistingId() {
+        return tasks.stream()
+        .mapToInt(Task::getId)
+        .max()
+        .orElse(0);
     }
 
     public void addTask(String name, String dueDate, Priority priority){
-        Task newTask = new Task(name, dueDate, priority);
+        Task newTask = new Task(idCounter, name, dueDate, priority);
         tasks.add(newTask);
         System.out.println("Task added: " + newTask);
         storagemanager.saveTasks(tasks);
@@ -49,7 +58,7 @@ public class TaskManager {
         if (tasks.isEmpty()) {
             System.out.println("No tasks found!");
         }
-        
+
         for (Task task: tasks) {
             System.out.println(task);
         }

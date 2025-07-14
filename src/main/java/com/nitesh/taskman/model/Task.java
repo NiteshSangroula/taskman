@@ -3,21 +3,21 @@ package com.nitesh.taskman.model;
 import java.io.Serializable;
 
 public class Task implements Serializable{
-    private static int idCounter = 1;
+    //private static int idCounter = 1;
     private final int id;
     private String name;
     private String dueDate;
     private Priority priority;
     private boolean done;
 
-    public Task(String name, String dueDate, Priority priority) {
-        this.id = idCounter;
+    public Task(int id, String name, String dueDate, Priority priority) {
+        this.id = id;
         this.name = name;
         this.dueDate = dueDate;
         this.priority = priority;
         this.done = false;
 
-        idCounter++;
+        //idCounter++;
     }
     //getters
     public int getId() { return id; }
